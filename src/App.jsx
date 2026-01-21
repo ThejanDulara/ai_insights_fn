@@ -1,5 +1,5 @@
 import React from "react";
-import Insight from "./components/Insight";
+import Insight from "./components/insight";
 
 export default function App() {
   return (
