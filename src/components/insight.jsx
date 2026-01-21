@@ -25,40 +25,38 @@ export default function Insight() {
       });
   }, []);
 
-  if (loading) return <p>Loading insights…</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-  if (!data) return <p>No insight data available</p>;
+  if (loading) return <p style={styles.center}>Loading insights…</p>;
+  if (error) return <p style={{ ...styles.center, color: "red" }}>{error}</p>;
+  if (!data) return <p style={styles.center}>No insight data available</p>;
 
   return (
-    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "24px", fontFamily: "sans-serif" }}>
-      <Section title="Insights" items={data.insights} />
-      <Section title="Reasons" items={data.reasons} />
-      <Section title="Risks" items={data.risks} />
-      <Section title="Recommendations" items={data.recommendations} />
+    <div style={styles.page}>
+      <div style={styles.container}>
+        <h1 style={styles.pageTitle}>AI Insights Summary</h1>
+
+        <Section title="Insights" items={data.insights} color="#e3f2fd" />
+        <Section title="Reasons" items={data.reasons} color="#f1f8e9" />
+        <Section title="Risks" items={data.risks} color="#fff3e0" />
+        <Section title="Recommendations" items={data.recommendations} color="#ede7f6" />
+      </div>
     </div>
   );
 }
 
-/**
- * CLEANER & PARSER
- * Strips Markdown code blocks (```json ... ```) and parses the result.
- */
+/* ------------------ PARSER (UNCHANGED) ------------------ */
+
 function parseToObject(input) {
   if (!input) return null;
 
   let value = input;
 
-  // 1. Remove Markdown code block wrappers if they exist
-  // This regex finds ```json or ``` at the start/end and removes them
   if (typeof value === "string") {
     value = value.replace(/```json|```/g, "").trim();
   }
 
   try {
-    // 2. Multi-pass parse (handles double-encoded strings)
     for (let i = 0; i < 3; i++) {
       if (typeof value === "string") {
-        // Clean non-breaking spaces
         const cleanInput = value.replace(/\u00a0/g, " ");
         value = JSON.parse(cleanInput);
       } else {
@@ -66,7 +64,6 @@ function parseToObject(input) {
       }
     }
   } catch (e) {
-    console.error("JSON Parse Error:", e);
     throw new Error("Could not parse AI data. Ensure it is valid JSON.");
   }
 
@@ -78,15 +75,17 @@ function parseToObject(input) {
   };
 }
 
-function Section({ title, items }) {
+/* ------------------ SECTION COMPONENT ------------------ */
+
+function Section({ title, items, color }) {
   if (!items || items.length === 0) return null;
 
   return (
-    <div style={{ marginBottom: "32px" }}>
-      <h2 style={{ borderBottom: "2px solid #f0f0f0", paddingBottom: "8px" }}>{title}</h2>
-      <ul style={{ paddingLeft: "20px" }}>
+    <div style={{ ...styles.section, backgroundColor: color }}>
+      <h2 style={styles.sectionTitle}>{title}</h2>
+      <ul style={styles.list}>
         {items.map((text, idx) => (
-          <li key={idx} style={{ marginBottom: "12px", lineHeight: "1.6" }}>
+          <li key={idx} style={styles.listItem}>
             {text}
           </li>
         ))}
@@ -94,3 +93,52 @@ function Section({ title, items }) {
     </div>
   );
 }
+
+/* ------------------ STYLES ------------------ */
+
+const styles = {
+  page: {
+    minHeight: "100vh",
+    backgroundColor: "#f5f7fb",
+    padding: "40px 16px",
+    fontFamily: "Inter, system-ui, sans-serif",
+  },
+  container: {
+    maxWidth: "900px",
+    margin: "0 auto",
+    background: "#ffffff",
+    borderRadius: "14px",
+    padding: "32px",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+  },
+  pageTitle: {
+    marginBottom: "32px",
+    fontSize: "28px",
+    fontWeight: "600",
+    color: "#1f2937",
+  },
+  section: {
+    borderRadius: "12px",
+    padding: "20px 24px",
+    marginBottom: "24px",
+  },
+  sectionTitle: {
+    marginBottom: "12px",
+    fontSize: "20px",
+    fontWeight: "600",
+    color: "#111827",
+  },
+  list: {
+    paddingLeft: "18px",
+  },
+  listItem: {
+    marginBottom: "10px",
+    lineHeight: "1.7",
+    color: "#374151",
+  },
+  center: {
+    textAlign: "center",
+    marginTop: "60px",
+    fontSize: "16px",
+  },
+};
