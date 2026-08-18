@@ -7,6 +7,11 @@ html {
   /* Soft blue-grey background */
   font-family: 'Inter', sans-serif;
   height: 100%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 .app-layout {
@@ -19,33 +24,36 @@ html {
 .main-content {
   width: 100%;
   max-width: 1400px;
-  padding: 20px 20px 0 20px;
+  padding: 16px 20px 0 20px;
   box-sizing: border-box;
   margin: 0 auto;
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 0;
 }
 
 .page-split {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 24px;
   align-items: stretch;
   height: 100%;
   overflow: hidden;
+  min-height: 0;
 }
 
 .left-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: stretch;
   position: relative;
   height: 100%;
   width: 50%;
+  min-height: 0;
 }
 
 .right-panel {
@@ -54,20 +62,28 @@ html {
   height: 100%;
   overflow-y: auto;
   padding-bottom: 20px;
-  padding-right: 15px; /* prevent scorllbar overlap */
+  padding-right: 12px; /* prevent scrollbar overlap */
+  min-height: 0;
 }
 
 /* ===== Tablet (≤1024px) ===== */
 @media (max-width: 1024px) {
-  .app-layout {
+  html, body {
     height: auto;
-    min-height: 100vh;
+    min-height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
   }
 
+  .app-layout {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: visible;
+    overflow-x: hidden;
+  }
+
   .main-content {
-    padding: 14px 14px 0 14px;
+    padding: 12px 14px 0 14px;
     overflow: visible;
     flex: none;
   }
@@ -76,13 +92,17 @@ html {
     flex-direction: column;
     overflow: visible;
     height: auto;
+    gap: 20px;
+    align-items: stretch;
   }
 
   .left-panel {
     width: 100%;
-    height: 45vh;
+    height: 60vh;
+    min-height: 400px;
     flex: none;
-    min-height: 250px;
+    display: flex;
+    margin: 0;
   }
 
   .right-panel {
@@ -98,7 +118,7 @@ html {
 /* ===== Mobile (≤600px) ===== */
 @media (max-width: 600px) {
   .page-split {
-    gap: 16px;
+    gap: 14px;
   }
 
   .main-content {
@@ -106,25 +126,14 @@ html {
   }
 
   .left-panel {
-    height: 35vh;
-    min-height: 200px;
+    width: 100%;
+    height: 55vh;
+    min-height: 350px;
+    margin: 0;
   }
 
-  /* Header responsive overrides (inline styles need !important) */
-  header {
-    flex-direction: column !important;
-    text-align: center !important;
-    padding: 10px 12px !important;
-    gap: 6px !important;
-  }
-
-  header h1 {
-    font-size: 15px !important;
-    white-space: normal !important;
-  }
-
-  header img {
-    height: 28px !important;
+  .right-panel {
+    padding-bottom: 90px;
   }
 
   /* Footer responsive */
@@ -139,25 +148,6 @@ html {
   .app-layout {
     height: 100vh;
     overflow: hidden;
-  }
-
-  /* Ultra-compact header */
-  header {
-    padding: 4px 12px !important;
-    gap: 6px !important;
-    min-height: unset !important;
-  }
-
-  header h1 {
-    font-size: 14px !important;
-  }
-
-  header img {
-    height: 24px !important;
-  }
-
-  header span {
-    font-size: 11px !important;
   }
 
   /* Hide footer to save vertical space */

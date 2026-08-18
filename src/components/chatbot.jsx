@@ -240,7 +240,6 @@ export default function Chatbot() {
       <div className="avatar-wrapper">
         <div
           className={`ai-avatar-container ${loading ? 'thinking' : isTalking ? 'talking' : 'listening'}`}
-          style={{ width: '100%', height: '100%', borderRadius: '20px', overflow: 'hidden', pointerEvents: 'auto', boxShadow: '0 16px 48px rgba(0,0,0,0.25)', background: '#0f172a' }}
         >
           <HeyGenAvatar
             avatarState={loading ? 'thinking' : isTalking ? 'talking' : 'listening'}
