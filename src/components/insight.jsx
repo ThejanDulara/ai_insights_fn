@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./insight.css";
 
-const API_URL = "http://127.0.0.1:5000/api/ai-insights/latest";
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/api/ai-insights/latest`;
 
 export default function Insight() {
   const [data, setData] = useState(null);
@@ -254,7 +254,7 @@ function Section({ title, items, type, onSpeak }) {
 // import React, { useEffect, useState } from "react";
 // import "./insight.css";
 
-// const API_URL = "http://127.0.0.1:5000/api/ai-insights/latest";
+// const API_URL = `${import.meta.env.VITE_API_BASE_URL}/api/ai-insights/latest`;
 
 // export default function Insight() {
 
