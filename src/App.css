@@ -57,12 +57,145 @@ html {
   padding-right: 15px; /* prevent scorllbar overlap */
 }
 
+/* ===== Tablet (≤1024px) ===== */
 @media (max-width: 1024px) {
+  .app-layout {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .main-content {
+    padding: 14px 14px 0 14px;
+    overflow: visible;
+    flex: none;
+  }
+
   .page-split {
     flex-direction: column;
+    overflow: visible;
+    height: auto;
   }
-  .left-panel, .right-panel {
+
+  .left-panel {
     width: 100%;
-    min-height: auto;
+    height: 45vh;
+    flex: none;
+    min-height: 250px;
   }
-}
+
+  .right-panel {
+    width: 100%;
+    height: auto;
+    flex: none;
+    overflow-y: visible;
+    padding-right: 0;
+    padding-bottom: 80px; /* space for the floating chatbot FAB */
+  }
+}
+
+/* ===== Mobile (≤600px) ===== */
+@media (max-width: 600px) {
+  .page-split {
+    gap: 16px;
+  }
+
+  .main-content {
+    padding: 8px 8px 0 8px;
+  }
+
+  .left-panel {
+    height: 35vh;
+    min-height: 200px;
+  }
+
+  /* Header responsive overrides (inline styles need !important) */
+  header {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 10px 12px !important;
+    gap: 6px !important;
+  }
+
+  header h1 {
+    font-size: 15px !important;
+    white-space: normal !important;
+  }
+
+  header img {
+    height: 28px !important;
+  }
+
+  /* Footer responsive */
+  footer {
+    padding: 8px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* ===== War Room / TV Iframe (short viewport) ===== */
+@media (max-height: 500px) {
+  .app-layout {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Ultra-compact header */
+  header {
+    padding: 4px 12px !important;
+    gap: 6px !important;
+    min-height: unset !important;
+  }
+
+  header h1 {
+    font-size: 14px !important;
+  }
+
+  header img {
+    height: 24px !important;
+  }
+
+  header span {
+    font-size: 11px !important;
+  }
+
+  /* Hide footer to save vertical space */
+  footer {
+    display: none !important;
+  }
+
+  /* Main content fills remaining space */
+  .main-content {
+    padding: 6px 10px 0 10px;
+    max-width: 100%;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  /* Side-by-side layout with tight gap */
+  .page-split {
+    flex-direction: row;
+    gap: 10px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Avatar panel: 40% width */
+  .left-panel {
+    width: 40%;
+    flex: none;
+    height: 100%;
+    min-height: unset;
+  }
+
+  /* Insights panel: 60% width, scrollable */
+  .right-panel {
+    width: 60%;
+    flex: none;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 4px;
+    padding-bottom: 8px;
+  }
+}

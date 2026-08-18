@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./insight.css";
 
-const API_URL = `${import.meta.env.VITE_API_BASE_URL}/api/ai-insights/latest`;
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const API_URL = `${API_BASE}/api/ai-insights/latest`;
 
 export default function Insight() {
   const [data, setData] = useState(null);

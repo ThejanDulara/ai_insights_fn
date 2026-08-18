@@ -17,7 +17,8 @@ export default function HeyGenAvatar({ avatarState, avatarRef, onAvatarReady }) 
 
     // 1. Fetch token
     const getToken = useCallback(async () => {
-        const res = await fetch('/api/liveavatar-token', { method: 'POST' });
+        const apiBase = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+        const res = await fetch(`${apiBase}/api/liveavatar-token`, { method: 'POST' });
         if (!res.ok) {
             const err = await res.json().catch(() => ({}));
             throw new Error(err.error || `Token request failed (${res.status})`);

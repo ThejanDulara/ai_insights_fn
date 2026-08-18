@@ -201,3 +201,187 @@ cursor:pointer;
   background: #fefce8;
   border-left: 5px solid #eab308;
 } */
+
+/* ===== Insight Responsive: Tablet (≤1024px) ===== */
+@media (max-width: 1024px) {
+  .insight-container {
+    padding: 12px 24px 30px 24px;
+    border-radius: 14px;
+  }
+
+  .insight-page-title {
+    font-size: 26px;
+  }
+
+  .voice-controls {
+    margin: 18px 0 25px;
+  }
+
+  .insight-section {
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+
+  .insight-section-title {
+    font-size: 18px;
+  }
+}
+
+/* ===== Insight Responsive: Mobile (≤600px) ===== */
+@media (max-width: 600px) {
+  .insight-container {
+    padding: 10px 14px 20px 14px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  .insight-page-title {
+    font-size: 20px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .voice-controls {
+    gap: 8px;
+    margin: 12px 0 18px;
+  }
+
+  .voice-controls select,
+  .voice-controls button {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .insight-section {
+    padding: 14px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+  }
+
+  .insight-section-title {
+    font-size: 16px;
+  }
+
+  .insight-list-item {
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .insight-list {
+    padding-left: 16px;
+  }
+
+  .insight-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .header-buttons {
+    gap: 6px;
+  }
+
+  .fullscreen-btn,
+  .avatar-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .return-btn {
+    top: 10px;
+    right: 10px;
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .fullscreen {
+    padding: 12px;
+  }
+
+  .insight-center {
+    margin-top: 50px;
+    font-size: 14px;
+  }
+
+  .insight-error {
+    padding: 14px;
+    font-size: 14px;
+  }
+}
+
+/* ===== War Room / TV Iframe (short viewport) ===== */
+@media (max-height: 500px) {
+  .insight-page {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .insight-container {
+    padding: 6px 12px 12px 12px;
+    border-radius: 10px;
+    box-shadow: none;
+    max-width: 100%;
+  }
+
+  .insight-page-title {
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  /* Hide voice controls on TV — no interaction expected */
+  .voice-controls {
+    display: none;
+  }
+
+  .insight-header {
+    margin-bottom: 4px;
+  }
+
+  .fullscreen-btn {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .insight-section {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+  }
+
+  .insight-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .section-header {
+    margin-bottom: 2px;
+  }
+
+  .section-speak {
+    font-size: 11px;
+  }
+
+  .insight-list {
+    padding-left: 16px;
+    margin: 4px 0;
+  }
+
+  .insight-list-item {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+
+  .insight-center {
+    margin-top: 30px;
+    font-size: 13px;
+  }
+
+  .insight-error {
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+}
